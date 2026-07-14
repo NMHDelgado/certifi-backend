@@ -12,7 +12,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: validate   # le schéma est géré exclusivement par Flyway
+      ddl-auto: update   # le schéma est géré exclusivement par Flyway
     open-in-view: false
     properties:
       hibernate:
