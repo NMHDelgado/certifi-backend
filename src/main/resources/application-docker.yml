@@ -1,0 +1,7 @@
+# Profil utilisé par le conteneur backend défini dans docker-compose.yml
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres:5432/certifi
+certifi:
+  ml-service:
+    base-url: http://ml-service:8000

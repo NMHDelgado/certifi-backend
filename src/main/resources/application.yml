@@ -1,0 +1,62 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: certifi-backend
+
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:certifi}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:delgado}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate   # le schéma est géré exclusivement par Flyway
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+  servlet:
+    multipart:
+      max-file-size: 10MB     # aligné avec la validation frontend (fileValidator.ts)
+      max-request-size: 12MB
+
+  mail:
+    host: ${SMTP_HOST:localhost}
+    port: ${SMTP_PORT:1025}
+    username: ${SMTP_USER:}
+    password: ${SMTP_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: ${SMTP_AUTH:false}
+          starttls:
+            enable: ${SMTP_STARTTLS:false}
+
+certifi:
+  jwt:
+    secret: ${JWT_SECRET:change-me-in-production-please-use-a-strong-random-secret}
+    expiration-minutes: 480
+
+  crypto:
+    keystore-path: ${CRYPTO_KEYSTORE_PATH:./keys/certifi-keystore.p12}
+    keystore-password: ${CRYPTO_KEYSTORE_PASSWORD:changeit}
+    key-alias: ${CRYPTO_KEY_ALIAS:certifi-signing-key}
+
+  ml-service:
+    base-url: ${ML_SERVICE_URL:http://127.0.0.1:8000}
+    timeout-ms: 800
+
+  alerts:
+    admin-email: ${ALERT_ADMIN_EMAIL:delgadonkenfang@gmail.com}
+    from-address: ${ALERT_FROM_ADDRESS:delgadonkenfang@gmail.com}
+
+logging:
+  level:
+    com.enspd.certifi: INFO
