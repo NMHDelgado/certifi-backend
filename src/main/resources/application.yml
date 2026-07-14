@@ -6,7 +6,7 @@ spring:
     name: certifi-backend
 
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:certifi}
+    url: ${DB_URL}  # jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:certifi}
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:delgado}
 
@@ -50,7 +50,7 @@ certifi:
     key-alias: ${CRYPTO_KEY_ALIAS:certifi-signing-key}
 
   ml-service:
-    base-url: ${ML_SERVICE_URL:http://127.0.0.1:8000}
+    base-url: ${ML_SERVICE_URL} #:http://127.0.0.1:8000}
     timeout-ms: 800
 
   alerts:
