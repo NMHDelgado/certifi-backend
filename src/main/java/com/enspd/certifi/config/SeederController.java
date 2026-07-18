@@ -1,8 +1,8 @@
-package com.securetrans.config;
+package com.enspd.certifi.config;
 
-import com.securetrans.domain.User;
-import com.securetrans.domain.enums.Enums.UserRole;
-import com.securetrans.repository.UserRepository;
+import com.enspd.certifi.domain.entity.AppUser;
+import com.enspd.certifi.domain.enums.UserRole;
+import com.enspd.certifi.domain.repository.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,7 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Slf4j
 public class SeederController implements CommandLineRunner {
 
-    private final UserRepository userRepository;
+    private final AppUserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Value("${securetrans.admin.email}")
@@ -51,12 +51,10 @@ public class SeederController implements CommandLineRunner {
             return;
         }
 
-        User admin = User.builder()
+        AppUser admin = AppUser.builder()
             .email(normalizedEmail)
             .passwordHash(passwordEncoder.encode(adminPassword))
-            .fullName(adminFullName.trim())
             .role(UserRole.ADMIN)
-            .suspended(false)
             .build();
 
         userRepository.save(admin);
