@@ -32,7 +32,7 @@ public class SeederController implements CommandLineRunner {
     private final AppUserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @Value("${securetrans.admin.email}")
+    @Value("${certifi.admin.email}")
     private String adminEmail;
 
     @Value("${securetrans.admin.password}")
