@@ -35,10 +35,10 @@ public class SeederController implements CommandLineRunner {
     @Value("${certifi.admin.email}")
     private String adminEmail;
 
-    @Value("${securetrans.admin.password}")
+    @Value("${certifi.admin.password}")
     private String adminPassword;
 
-    @Value("${securetrans.admin.full-name}")
+    @Value("${certifi.admin.full-name}")
     private String adminFullName;
 
     @Override
