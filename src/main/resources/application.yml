@@ -43,6 +43,13 @@ certifi:
   jwt:
     secret: ${JWT_SECRET:change-me-in-production-please-use-a-strong-random-secret}
     expiration-minutes: 480
+  
+  admin:
+    # Compte administrateur provisionne automatiquement au demarrage (SeederController).
+    # En production, TOUJOURS surcharger ADMIN_EMAIL / ADMIN_PASSWORD par variables d'environnement.
+    email: ${ADMIN_EMAIL:admin@enspd.com}
+    password: ${ADMIN_PASSWORD:Daniva}
+    full-name: ${ADMIN_FULL_NAME:Daniva CD}
 
   crypto:
     keystore-path: ${CRYPTO_KEYSTORE_PATH:./keys/certifi-keystore.p12}
